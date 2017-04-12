@@ -6,6 +6,30 @@ import Easing from 'react-native/Libraries/Animated/src/Easing';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Actions } from "react-native-router-flux";
 import { Label } from "../common/controls";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { loadRestaurants } from "../actions/restaurants";
+
+const styles = EStyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        backgroundColor: "$initBackground"
+    },
+    logo: {
+        position: "absolute",
+        top: "20%",
+        width: "300rem",
+        height: "300rem",
+        alignSelf: "center",
+    },
+    message: {
+        alignSelf: "center",
+        color: "#fff",
+        position: "absolute",
+        bottom: "20%"
+    }
+})
 
 class InitScreen extends Component {
 
@@ -17,7 +41,8 @@ class InitScreen extends Component {
 
 
     componentDidMount() {
-        this.animate()
+        this.animate();
+        this.props.loadRestaurants();
     }
 
     animate() {
@@ -49,25 +74,6 @@ class InitScreen extends Component {
     }
 }
 
-const styles = EStyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        backgroundColor: "$initBackground"
-    },
-    logo: {
-        position: "absolute",
-        top: "20%",
-        width: "300rem",
-        height: "300rem",
-        alignSelf: "center",
-    },
-    message: {
-        alignSelf: "center",
-        color: "#fff",
-        position: "absolute",
-        bottom: "20%"
-    }
-})
-
-export default InitScreen;
+export default connect((state, props) => ({}), (dispatch) => ({
+    loadRestaurants: bindActionCreators(loadRestaurants, dispatch)
+}))(InitScreen);

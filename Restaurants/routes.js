@@ -13,8 +13,8 @@ export default (
     <Scene key="modal" component={Modal} hideNavBar >
         <Scene key="root" hideNavBar hideTabBar>
 
-            <Scene key="init" component={InitScreen} />
-            <Scene key="drawer" component={Drawer} open={false} initial={true}  >
+            <Scene key="init" component={InitScreen} initial={true} />
+            <Scene key="drawer" component={Drawer} open={false}  >
                 <Scene
                     key="main">
                     <Scene key="restaurants" component={Restaurants} title="Restaurants" hideTabBar  />

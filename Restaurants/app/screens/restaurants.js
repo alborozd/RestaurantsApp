@@ -16,14 +16,20 @@ const styles = EStyleSheet.create({
 })
 
 class MainScreen extends Component {
+
     render() {
+
+        const { restaurants } = this.props;
+
         return (
             <Container style={styles.container}>
                 <Text>  Main Screen!!! {this.props.userName}</Text>
                 <TouchableOpacity onPress={() => Actions.filters()}>
                     <Text>Show filters</Text>
                 </TouchableOpacity>
-                
+                <View>
+                    <Text>{JSON.stringify(restaurants)}</Text>
+                </View>
                 <TouchableOpacity onPress={() => Actions.infoModal()}>
                     <Text>Show info</Text>
                 </TouchableOpacity>
@@ -33,5 +39,6 @@ class MainScreen extends Component {
 }
 
 export default connect((state) => ({
-    userName: state.user.userName
+    userName: state.user.userName,
+    restaurants: state.restaurants.data
 }))(MainScreen);
