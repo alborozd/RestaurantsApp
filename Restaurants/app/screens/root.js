@@ -7,7 +7,7 @@ import {
 const styles = StyleSheet.create({
     root: {
         flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: '#fff'
     },
     background: {
         position: 'absolute',
@@ -23,9 +23,9 @@ class Root extends Component {
     render() {
         return (
             <View style={styles.root}>
-                <View style={styles.background}>
+                
                     {this.props.children}
-                </View>
+                
             </View>
         );
     }

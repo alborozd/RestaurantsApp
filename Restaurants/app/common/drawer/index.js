@@ -14,6 +14,7 @@ class NavigationDrawer extends React.Component {
     const children = state.children;
     return (
       <Drawer
+        open={state.open}
         ref="navigation"
         type="displace"
         onOpen={() => Actions.refresh({ key: state.key, open: true })}

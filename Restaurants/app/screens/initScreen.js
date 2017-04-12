@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import {
-    Text, View, StyleSheet, TouchableOpacity, Animated, Image
+    View, Animated, Image
 } from "react-native";
 import Easing from 'react-native/Libraries/Animated/src/Easing';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Actions } from "react-native-router-flux";
+import { Label } from "../common/controls";
 
 class InitScreen extends Component {
 
@@ -39,12 +40,10 @@ class InitScreen extends Component {
 
         return (
             <View style={styles.container}>
-                <View>
                 <Animated.Image
                     style={[{transform: [{ rotate: spin }] }, styles.logo]}
-                    source={require("../../assets/img/logo_white.jpg")} />
-                </View>
-                <Text style={styles.message}>Loading...</Text>
+                    source={require("../../assets/img/logo_white.png")} />
+                <Label style={styles.message}>Loading...</Label>
             </View>
         );
     }
@@ -53,19 +52,21 @@ class InitScreen extends Component {
 const styles = EStyleSheet.create({
     container: {
         flex: 1,
-       // alignContent: "center",
         justifyContent: "center",
         backgroundColor: "$initBackground"
     },
     logo: {
+        position: "absolute",
+        top: "20%",
         width: "300rem",
         height: "300rem",
         alignSelf: "center",
-       // marginTop: "-300rem"
     },
     message: {
         alignSelf: "center",
-        color: "#fff"
+        color: "#fff",
+        position: "absolute",
+        bottom: "20%"
     }
 })
 
