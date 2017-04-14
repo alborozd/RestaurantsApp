@@ -9,5 +9,6 @@ export default {
     fullWidth: width,
     initBackground: "#222222",
     mainBackground: "#eee",
-    listRowBorder: "#DBDBDB"
+    listRowBorder: "#DBDBDB",
+    drawerTop: "#0D0D0D"
 }

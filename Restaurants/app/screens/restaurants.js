@@ -18,7 +18,7 @@ class MainScreen extends Component {
 
         return (
             <View style={[styles.listRow, styles.bordered]}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => Actions.infoModal({ name: row.name, reviewGood: row.reviewGood, reviewBad: row.reviewBad })}>
                     <View style={styles.rowContainer}>
                         <View style={[styles.imageContainer, styles.bordered]}>
                             <Image resizeMode="contain" style={styles.logo} source={{ uri: imageUri }} />
