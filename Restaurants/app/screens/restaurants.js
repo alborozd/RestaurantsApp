@@ -47,67 +47,25 @@ class MainScreen extends Component {
                     renderRow={(row) => this.renderRow(row)}
                     enableEmptySections={true}
                 />
-                {/*<Text>  Main Screen!!! {this.props.userName}</Text>
-                <TouchableOpacity onPress={() => Actions.filters()}>
-                    <Text>Show filters</Text>
-                </TouchableOpacity>
-                <View>
-                    <Text>{JSON.stringify(restaurants)}</Text>
-                </View>
-                <TouchableOpacity onPress={() => Actions.infoModal()}>
-                    <Text>Show info</Text>
-                </TouchableOpacity>*/}
             </Container>
         );
     }
 }
 
-
 const styles = EStyleSheet.create({
-    container: {
-        backgroundColor: "$mainBackground",
-        paddingHorizontal: "50rem",
-        marginTop: "40rem",
-    },
-    listRow: {
-        flex: 1,
-        backgroundColor: "#fff",
-        marginBottom: "20rem",
-        borderTopLeftRadius: 90,
-        borderBottomLeftRadius: 90,
-    },
-    bordered: {
-        borderColor: "$listRowBorder",
-        borderWidth: 1
-    },
-    logo: {
-        width: "180rem",
-        height: "180rem"
-    },
-    rowContainer: {
-        flexDirection: "row",
-        alignContent: "center",
-        alignItems: "center"
-    },
-    imageContainer: {
-        width: "182rem",
-        height: "182rem",
-        borderRadius: "91rem",
-        marginLeft: "-2rem",
-    },
-    rowLabel: {
-        marginLeft: "30rem",
-        fontSize: 18
-    },
-    contentContainer: {
-        flex: 1,
-        paddingRight: "20rem",
-        flexDirection: "row",
-        justifyContent: "space-between"
-    }
+    container: { backgroundColor: "$mainBackground", paddingHorizontal: "50rem", marginTop: "40rem" },
+    listRow: { flex: 1, backgroundColor: "#fff", marginBottom: "20rem", borderTopLeftRadius: 90, borderBottomLeftRadius: 90 },
+    bordered: { borderColor: "$listRowBorder", borderWidth: 1 },
+    logo: { width: "180rem", height: "180rem" },
+    rowContainer: { flexDirection: "row", alignContent: "center", alignItems: "center" },
+    imageContainer: { width: "182rem", height: "182rem", borderRadius: "91rem", marginLeft: "-2rem" },
+    rowLabel: { marginLeft: "30rem", fontSize: 18 },
+    contentContainer: { flex: 1, paddingRight: "20rem", flexDirection: "row", justifyContent: "space-between" }
 });
 
 export default connect((state) => ({
     userName: state.user.userName,
-    restaurants: state.restaurants.data
+    restaurants: !state.filters.selected ?
+                     state.restaurants.data 
+                     : state.restaurants.data.filter(item => item.filters.includes(state.filters.selected))
 }))(MainScreen);

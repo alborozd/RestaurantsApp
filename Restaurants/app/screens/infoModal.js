@@ -33,40 +33,10 @@ export default class InfoModal extends Component {
 }
 
 const styles = EStyleSheet.create({
-    container: {
-        position: "absolute",
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        backgroundColor: "rgba(0,0,0,0.3)",
-        alignItems: "center",
-    },
-    alignCenterContainer: {
-        justifyContent: "center",
-        paddingTop: "60rem"
-    },
-    alignTopContainer: {
-        justifyContent: "flex-start",
-        paddingTop: "60rem"
-    },
-    content: {
-        backgroundColor: "#fff",
-        borderRadius: "20rem",
-        padding: "60rem",
-        marginLeft: "20rem",
-        marginRight: "20rem"
-    },
-
-    closeButton: {
-        position: 'absolute',
-        top: "10rem",
-        right: "10rem",
-        padding: "10rem",
-    },
-
-    closeButtonImage: {
-        width: "30rem",
-        height: "30rem",
-    }
+    container: { position: "absolute", top: 0, left: 0, bottom: 0, right: 0, backgroundColor: "rgba(0,0,0,0.3)", alignItems: "center" },
+    alignCenterContainer: { justifyContent: "center", paddingTop: "60rem" },
+    alignTopContainer: { justifyContent: "flex-start", paddingTop: "60rem" },
+    content: { backgroundColor: "#fff", borderRadius: "20rem", padding: "60rem", marginLeft: "20rem", marginRight: "20rem" },
+    closeButton: { position: 'absolute', top: "10rem", right: "10rem", padding: "10rem", },
+    closeButtonImage: { width: "30rem", height: "30rem" }
 });

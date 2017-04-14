@@ -19,4 +19,6 @@ export function getRestaurants() {
     return call("getCafeList");
 }
 
-
+export function getFilters() {
+    return call("getBaseMenu");
+}

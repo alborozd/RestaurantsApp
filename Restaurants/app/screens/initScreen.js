@@ -10,27 +10,6 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { loadRestaurants } from "../actions/restaurants";
 
-const styles = EStyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        backgroundColor: "$initBackground"
-    },
-    logo: {
-        position: "absolute",
-        top: "20%",
-        width: "300rem",
-        height: "300rem",
-        alignSelf: "center",
-    },
-    message: {
-        alignSelf: "center",
-        color: "#fff",
-        position: "absolute",
-        bottom: "20%"
-    }
-})
-
 class InitScreen extends Component {
 
     constructor(props) {
@@ -38,7 +17,6 @@ class InitScreen extends Component {
 
         this.animatedValue = new Animated.Value(0)
     }
-
 
     componentDidMount() {
         this.animate();
@@ -73,6 +51,13 @@ class InitScreen extends Component {
         );
     }
 }
+
+
+const styles = EStyleSheet.create({
+    container: { flex: 1, justifyContent: "center", backgroundColor: "$initBackground" },
+    logo: { position: "absolute", top: "20%", width: "300rem", height: "300rem", alignSelf: "center" },
+    message: { alignSelf: "center", color: "#fff", position: "absolute", bottom: "20%" }
+});
 
 export default connect((state, props) => ({}), (dispatch) => ({
     loadRestaurants: bindActionCreators(loadRestaurants, dispatch)
