@@ -14,7 +14,7 @@ export default (
         <Scene key="root" hideNavBar hideTabBar>
 
             <Scene key="init" component={InitScreen} initial={true} />
-            <Scene key="drawer" component={Drawer} open={false}  >
+            <Scene key="drawer" type="replace" component={Drawer} open={false}  >
                 <Scene
                     key="main">
                     <Scene key="restaurants" component={Restaurants} title="Restaurants" hideTabBar  />

@@ -1,6 +1,6 @@
-import React, {Component} from "react"; 
+import React, { Component } from "react";
 import {
-    Text, View, StyleSheet, TouchableOpacity
+    Text, View, StyleSheet, TouchableOpacity, Image, ListView
 } from "react-native";
 
 import { Actions } from "react-native-router-flux";
@@ -8,22 +8,46 @@ import { connect } from "react-redux"
 import Container from "../common/container";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
-const styles = EStyleSheet.create({
-    container: {
-        backgroundColor: "#eee"
-    }
-})
+import { Label } from "../common/controls";
+import Constants from "../constants";
 
 class MainScreen extends Component {
+
+    renderRow(row) {
+        const imageUri = Constants.BASE_URL + row.logo;
+
+        return (
+            <View style={[styles.listRow, styles.bordered]}>
+                <TouchableOpacity>
+                    <View style={styles.rowContainer}>
+                        <View style={[styles.imageContainer, styles.bordered]}>
+                            <Image resizeMode="contain" style={styles.logo} source={{ uri: imageUri }} />
+                        </View>
+                        <View style={styles.contentContainer}>
+                            <Label style={styles.rowLabel}>{row.name}</Label>
+                            <Icon name="info-circle" size={25} color="#000" />
+                        </View>
+                    </View>
+                </TouchableOpacity>
+            </View>
+        )
+    }
 
     render() {
 
         const { restaurants } = this.props;
 
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+        let dataSource = ds.cloneWithRows(restaurants);
+
         return (
             <Container style={styles.container}>
-                <Text>  Main Screen!!! {this.props.userName}</Text>
+                <ListView
+                    dataSource={dataSource}
+                    renderRow={(row) => this.renderRow(row)}
+                    enableEmptySections={true}
+                />
+                {/*<Text>  Main Screen!!! {this.props.userName}</Text>
                 <TouchableOpacity onPress={() => Actions.filters()}>
                     <Text>Show filters</Text>
                 </TouchableOpacity>
@@ -32,11 +56,56 @@ class MainScreen extends Component {
                 </View>
                 <TouchableOpacity onPress={() => Actions.infoModal()}>
                     <Text>Show info</Text>
-                </TouchableOpacity>
+                </TouchableOpacity>*/}
             </Container>
         );
     }
 }
+
+
+const styles = EStyleSheet.create({
+    container: {
+        backgroundColor: "$mainBackground",
+        paddingHorizontal: "50rem",
+        marginTop: "40rem",
+    },
+    listRow: {
+        flex: 1,
+        backgroundColor: "#fff",
+        marginBottom: "20rem",
+        borderTopLeftRadius: 90,
+        borderBottomLeftRadius: 90,
+    },
+    bordered: {
+        borderColor: "$listRowBorder",
+        borderWidth: 1
+    },
+    logo: {
+        width: "180rem",
+        height: "180rem"
+    },
+    rowContainer: {
+        flexDirection: "row",
+        alignContent: "center",
+        alignItems: "center"
+    },
+    imageContainer: {
+        width: "182rem",
+        height: "182rem",
+        borderRadius: "91rem",
+        marginLeft: "-2rem",
+    },
+    rowLabel: {
+        marginLeft: "30rem",
+        fontSize: 18
+    },
+    contentContainer: {
+        flex: 1,
+        paddingRight: "20rem",
+        flexDirection: "row",
+        justifyContent: "space-between"
+    }
+});
 
 export default connect((state) => ({
     userName: state.user.userName,

@@ -7,5 +7,7 @@ var {width} = Dimensions.get("window");
 export default {
     rem: width / 720,
     fullWidth: width,
-    initBackground: "#222222"
+    initBackground: "#222222",
+    mainBackground: "#eee",
+    listRowBorder: "#DBDBDB"
 }

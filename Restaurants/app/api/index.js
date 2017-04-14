@@ -2,7 +2,7 @@ import Constants from "../constants";
 
 function call(url) {
     return new Promise((resolve, reject) => {
-        fetch(Constants.API + url, {
+        fetch(Constants.BASE_URL + "/api/1/" + url, {
             method: "GET",
             headers: {
                 'Accept': 'application/json',

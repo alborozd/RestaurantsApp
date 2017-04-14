@@ -1,7 +1,7 @@
 
 
 module.exports = {
-    API: "https://batutto.com/api/1/",
+    BASE_URL: "https://batutto.com",
     LOAD_RESTAURANTS: "LOAD_RESTAURANTS",
 
     SUCCESS: "_SUCCESS",
