@@ -7,17 +7,16 @@ import Restaurants from "./app/screens/restaurants";
 import Filters from "./app/screens/filters";
 import InfoModal from "./app/screens/infoModal";
 import { Text, TouchableOpacity } from "react-native";
+import I18n from "react-native-i18n";
 
-
-export default (
+module.exports =
     <Scene key="modal" component={Modal} hideNavBar >
         <Scene key="root" hideNavBar hideTabBar>
 
             <Scene key="init" component={InitScreen} initial={true} />
             <Scene key="drawer" type="replace" component={Drawer} open={false}  >
-                <Scene
-                    key="main">
-                    <Scene key="restaurants" component={Restaurants} title="Restaurants" hideTabBar  />
+                <Scene key="main">
+                    <Scene key="restaurants" component={Restaurants} title={I18n.t("mainTitle")} hideTabBar />
                 </Scene>
             </Scene>
 
@@ -26,4 +25,3 @@ export default (
 
         <Scene key="infoModal" component={InfoModal} />
     </Scene>
-)

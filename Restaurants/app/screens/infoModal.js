@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import {
-    View, TouchableOpacity, Image, Text, TouchableWithoutFeedback
+    View, TouchableOpacity, Image, TouchableWithoutFeedback
 } from "react-native";
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Actions } from "react-native-router-flux";
 import { Label } from "../common/controls";
+import I18n from "react-native-i18n";
 
 export default class InfoModal extends Component {
 
@@ -22,8 +23,8 @@ export default class InfoModal extends Component {
 
                 <View style={styles.content}>
                     <Label>{this.props.name}</Label>
-                    <Label>Bad reviews: {this.props.reviewBad}</Label>
-                    <Label>Good reviews: {this.props.reviewGood}</Label>
+                    <Label>{I18n.t("badReviews")} {this.props.reviewBad}</Label>
+                    <Label>{I18n.t("goodReviews")} {this.props.reviewGood}</Label>
                 </View>
 
             </TouchableOpacity>

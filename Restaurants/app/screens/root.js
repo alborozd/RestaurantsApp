@@ -23,9 +23,7 @@ class Root extends Component {
     render() {
         return (
             <View style={styles.root}>
-                
-                    {this.props.children}
-                
+                {this.props.children}
             </View>
         );
     }

@@ -8,6 +8,7 @@ import { connect } from "react-redux"
 import EStyleSheet from "react-native-extended-stylesheet";
 import { changUsername } from "../../actions/user";
 import { bindActionCreators } from "redux";
+import I18n from "react-native-i18n";
 
 const MAX_NAME_LENGTH = 20;
 
@@ -47,7 +48,7 @@ class DrawerContent extends Component {
                         value={this.state.name}
                         onChangeText={(text) => this.setName(text)}
                         onSubmitEditing={(event) => this.changeName(event)} style={styles.input}
-                        placeholder="Change your name"
+                        placeholder={I18n.t("userNamePlaceholder")}
                         placeholderTextColor="#fff" />
                 </View>
             </View>

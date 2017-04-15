@@ -1,0 +1,8 @@
+{
+    "mainTitle": "Restaurants",
+    "defaultUserName": "new user",
+    "loadingMessage": "Loading...",
+    "badReviews": "Bad reviews:",
+    "goodReviews": "Good reviews:",
+    "userNamePlaceholder": "Change your name"
+}

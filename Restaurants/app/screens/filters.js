@@ -9,6 +9,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import EStyleSheet from "react-native-extended-stylesheet";
 import { Label } from "../common/controls";
 import { Actions } from "react-native-router-flux";
+import I18n from "react-native-i18n";
 
 class Filter extends Component {
 
@@ -37,7 +38,7 @@ class Filter extends Component {
         const { loading, selected, data, setFilter } = this.props;
         if (loading) {
             return  <Spinner visible={loading} 
-                        textContent={"Loading..."} 
+                        textContent={I18n.t("loadingMessage")} 
                         textStyle={{color: '#FFF'}} />
         }
 

@@ -10,6 +10,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { loadRestaurants } from "../actions/restaurants";
 import { loadUsername } from "../actions/user";
+import I18n from "react-native-i18n";
 
 class InitScreen extends Component {
 
@@ -48,7 +49,7 @@ class InitScreen extends Component {
                 <Animated.Image
                     style={[{transform: [{ rotate: spin }] }, styles.logo]}
                     source={require("../../assets/img/logo_white.png")} />
-                <Label style={styles.message}>Loading...</Label>
+                <Label style={styles.message}>{I18n.t("loadingMessage")}</Label>
             </View>
         );
     }
