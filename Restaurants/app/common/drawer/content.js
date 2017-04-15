@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-    View, StyleSheet, Image, TextInput
+    View, StyleSheet, Image, TextInput, KeyboardAvoidingView, Keyboard, TouchableWithoutFeedback
 } from "react-native";
 import Container from "../container";
 import { Label } from "../controls";
@@ -33,26 +33,29 @@ class DrawerContent extends Component {
 
     render() {
         return (
-
-            <View style={styles.container}>
-                <View style={styles.logoContent}>
-                    <View>
-                        <Image style={styles.logo} source={require("../../../assets/img/react-logo.png")} />
-                    </View>
-                    <View style={styles.nameContainer}>
-                        <Label style={styles.userName}>Hello {this.props.userName}!</Label>
-                    </View>
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <View style={styles.container}>
+                    <KeyboardAvoidingView behavior={"padding"} style={styles.container}>
+                        <View style={styles.logoContent}>
+                            <View>
+                                <Image style={styles.logo} source={require("../../../assets/img/react-logo.png")} />
+                            </View>
+                            <View style={styles.nameContainer}>
+                                <Label style={styles.userName}>Hello {this.props.userName}!</Label>
+                            </View>
+                        </View>
+                        <View style={styles.inputContainer}>
+                            <TextInput blurOnSubmit={true}
+                                underlineColorAndroid='transparent'
+                                value={this.state.name}
+                                onChangeText={(text) => this.setName(text)}
+                                onSubmitEditing={(event) => this.changeName(event)} style={styles.input}
+                                placeholder={I18n.t("userNamePlaceholder")}
+                                placeholderTextColor="#fff" />
+                        </View>
+                    </KeyboardAvoidingView>
                 </View>
-                <View style={styles.inputContainer}>
-                    <TextInput blurOnSubmit={true}
-                        value={this.state.name}
-                        onChangeText={(text) => this.setName(text)}
-                        onSubmitEditing={(event) => this.changeName(event)} style={styles.input}
-                        placeholder={I18n.t("userNamePlaceholder")}
-                        placeholderTextColor="#fff" />
-                </View>
-            </View>
-
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -64,7 +67,14 @@ const styles = EStyleSheet.create({
     userName: { color: "#fff", alignSelf: "center" },
     nameContainer: { paddingVertical: "30rem", backgroundColor: "#000" },
     logoContent: { justifyContent: "center", paddingTop: "150rem", backgroundColor: "$drawerTop" },
-    logo: { width: "300rem", height: "300rem", alignSelf: "center" }
+    logo: { width: "300rem", height: "300rem", alignSelf: "center" },
+
+    keyboardContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        paddingHorizontal: 20,
+        paddingTop: 20,
+    }
 })
 
 export default connect((state, props) => ({

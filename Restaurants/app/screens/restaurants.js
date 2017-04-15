@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import {
-    Text, View, StyleSheet, TouchableOpacity, Image, ListView
+    View, StyleSheet, TouchableOpacity, Image, ListView, TouchableWithoutFeedback, Keyboard
 } from "react-native";
 
 import { Actions } from "react-native-router-flux";
@@ -17,19 +17,21 @@ class MainScreen extends Component {
         const imageUri = Constants.BASE_URL + row.logo;
 
         return (
-            <View style={[styles.listRow, styles.bordered]}>
-                <TouchableOpacity onPress={() => Actions.infoModal({ name: row.name, reviewGood: row.reviewGood, reviewBad: row.reviewBad })}>
-                    <View style={styles.rowContainer}>
-                        <View style={[styles.imageContainer, styles.bordered]}>
-                            <Image resizeMode="contain" style={styles.logo} source={{ uri: imageUri }} />
+            <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <View style={[styles.listRow, styles.bordered]}>
+                    <TouchableOpacity onPress={() => Actions.infoModal({ name: row.name, reviewGood: row.reviewGood, reviewBad: row.reviewBad })}>
+                        <View style={styles.rowContainer}>
+                            <View style={[styles.imageContainer, styles.bordered]}>
+                                <Image resizeMode="contain" style={styles.logo} source={{ uri: imageUri }} />
+                            </View>
+                            <View style={styles.contentContainer}>
+                                <Label style={styles.rowLabel}>{row.name}</Label>
+                                <Icon name="info-circle" size={25} color="#000" />
+                            </View>
                         </View>
-                        <View style={styles.contentContainer}>
-                            <Label style={styles.rowLabel}>{row.name}</Label>
-                            <Icon name="info-circle" size={25} color="#000" />
-                        </View>
-                    </View>
-                </TouchableOpacity>
-            </View>
+                    </TouchableOpacity>
+                </View>
+            </TouchableWithoutFeedback>
         )
     }
 
@@ -66,6 +68,6 @@ const styles = EStyleSheet.create({
 export default connect((state) => ({
     userName: state.user.userName,
     restaurants: !state.filters.selected ?
-                     state.restaurants.data 
-                     : state.restaurants.data.filter(item => item.filters.includes(state.filters.selected))
+        state.restaurants.data
+        : state.restaurants.data.filter(item => item.filters.includes(state.filters.selected))
 }))(MainScreen);
