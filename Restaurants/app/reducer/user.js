@@ -1,7 +1,7 @@
 import Constants from "../constants";
 
 const defaultState = {
-    userName: "new user"
+    userName: ""
 }
 
 export default (state = defaultState, action) => {
@@ -10,6 +10,8 @@ export default (state = defaultState, action) => {
 
     switch(type) {
         case Constants.CHANGE_USERNAME: return { userName: payload.userName };
+
+        case Constants.GET_USER_NAME + Constants.SUCCESS: return { userName: payload.userName };
     }
 
     return state;

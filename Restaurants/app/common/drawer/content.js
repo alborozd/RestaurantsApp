@@ -9,12 +9,24 @@ import EStyleSheet from "react-native-extended-stylesheet";
 import { changUsername } from "../../actions/user";
 import { bindActionCreators } from "redux";
 
+const MAX_NAME_LENGTH = 20;
+
 class DrawerContent extends Component {
+
+    state = {
+        name: ""
+    }
+
+    setName(name) {
+        if (name && name.length > MAX_NAME_LENGTH) return;
+        this.setState({ name });
+    }
 
     changeName(event) {
         let text = event.nativeEvent.text;
         if (text) {
             this.props.changUsername(text);
+            this.setState({ name: "" })
         }
     }
 
@@ -32,6 +44,8 @@ class DrawerContent extends Component {
                 </View>
                 <View style={styles.inputContainer}>
                     <TextInput blurOnSubmit={true}
+                        value={this.state.name}
+                        onChangeText={(text) => this.setName(text)}
                         onSubmitEditing={(event) => this.changeName(event)} style={styles.input}
                         placeholder="Change your name"
                         placeholderTextColor="#fff" />

@@ -9,6 +9,7 @@ import { Label } from "../common/controls";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { loadRestaurants } from "../actions/restaurants";
+import { loadUsername } from "../actions/user";
 
 class InitScreen extends Component {
 
@@ -21,6 +22,7 @@ class InitScreen extends Component {
     componentDidMount() {
         this.animate();
         this.props.loadRestaurants();
+        this.props.loadUsername();
     }
 
     animate() {
@@ -60,5 +62,6 @@ const styles = EStyleSheet.create({
 });
 
 export default connect((state, props) => ({}), (dispatch) => ({
-    loadRestaurants: bindActionCreators(loadRestaurants, dispatch)
+    loadRestaurants: bindActionCreators(loadRestaurants, dispatch),
+    loadUsername: bindActionCreators(loadUsername, dispatch)
 }))(InitScreen);
